@@ -1,0 +1,27 @@
+load('train.mat');
+load('validation.mat');
+
+[N, ~] = size(X_train_bag);
+
+indices = crossvalind('Kfold', N, 10);
+
+cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
+
+cost = 0;
+X
+for i = 1:10
+    X_train = X_train_bag(indices ~= i,:);
+    train_labels = Y_train(indices ~= i);
+    X_test = X_train_bag(indices == i, :);
+    test_labels = Y_train(indices == i);
+    [n, ~] = size(X_test);
+    M = train(train_labels, double(X_train > 0), '-s 7 -c .207');
+    [Ys, ~, prob_estimates] = predict(ones(n,1), double(X_test > 0), M, ['-b 1']);
+%     costs = cost_matrix * prob_estimates';
+%     [~, Y_hat] = min(costs);
+%     Y_hat = Y_hat';
+    err = performance_measure(Ys, test_labels);
+    cost = cost + err;
+end
+
+cost = cost / 10;
