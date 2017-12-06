@@ -1,0 +1,19 @@
+load('train.mat');
+load('validation.mat');
+load('vocabulary.mat');
+
+cs = .1:.05:1.01;
+[X, Y] = prep_data(X_train_bag, Y_train, .1);
+
+c = 0;
+for c = cs
+    predict_func = @predict);
+    score = cross_val(X, Y, 10, predict_func);
+end
+
+function Y_hat = predict(X_train, Y_train, X_test)
+    params = sprintf('-s 7 -c %i', c);
+    M = train(Y_train, X_train, params); 
+    [Y_hat, ~, ~] = predict(ones(n,1), X_test, M, ['-b 1']);
+end
+
