@@ -4,10 +4,10 @@ load('vocabulary.mat');
 
 cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
 
-cs = .5:.05:3;
+cs = 1:.05:3;
 inx = 1;
 inx2 = 1;
-cutoffs = 0;
+cutoffs = .1;
 scores = zeros(length(cutoffs), length(cs));
 
 for cutoff = cutoffs
@@ -37,4 +37,3 @@ function Y_hat = predict_logistic(X_train, Y_train, X_test, c)
     Y_hat = Y_hat';
     
 end
-

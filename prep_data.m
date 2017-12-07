@@ -1,5 +1,7 @@
 function [X, Y, included_features] = prep_data(X_input, Y_input, cutoff)
-    X = double(X_input > 0);
+    X = [X_input sum(X_input, 2)];
+%     X = [double(X(:, 1:10000) > 1) X(:, 10001)];
+   
     Y = Y_input;
     num_features = size(X, 2);
     [baseline, ~] = hist(Y_input, 5);
