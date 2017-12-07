@@ -2,18 +2,38 @@ load('train.mat');
 load('validation.mat');
 load('vocabulary.mat');
 
-cs = .1:.05:1.01;
-[X, Y] = prep_data(X_train_bag, Y_train, .1);
+cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
 
-c = 0;
-for c = cs
-    predict_func = @predict);
-    score = cross_val(X, Y, 10, predict_func);
+cs = .1:.05:1.01;
+inx = 1;
+inx2 = 1;
+cutoffs = 0:.1:1;
+scores = zeros(length(cutoffs), length(cs));
+
+for cutoff = cutoffs
+    [X, Y] = prep_data(X_train_bag, Y_train, cutoff);
+    for c = cs
+        predict_func = @(X, Y, Xt)(predict_logistic(X, Y, Xt, c));
+        score = cross_val(X, Y, 10, predict_func);
+        scores(inx, inx2) = score;
+        inx2 = inx2+1;
+    end
+    inx = inx+1;
+    inx2 = 1;
 end
 
-function Y_hat = predict(X_train, Y_train, X_test)
+function Y_hat = predict_logistic(X_train, Y_train, X_test, c)
+    cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
     params = sprintf('-s 7 -c %i', c);
-    M = train(Y_train, X_train, params); 
-    [Y_hat, ~, ~] = predict(ones(n,1), X_test, M, ['-b 1']);
+    M = train(Y_train, X_train, params);
+    n = size(X_test, 1);
+    [~, ~, prob_estimates] = predict(ones(n,1), X_test, M, ['-b 1']);
+    prob_estimates2 = prob_estimates;
+    for i = 1:5
+        prob_estimates(:, M.Label(i)) = prob_staimte
+    costs = cost_matrix * prob_estimates';
+    [~, Y_hat] = min(costs);
+    Y_hat = Y_hat';
+    
 end
 
