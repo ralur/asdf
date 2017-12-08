@@ -29,21 +29,7 @@ There is a file called \textbf{run\_all.m} that contains a script for training a
 {\large\textbf{Naive Bayes}}
 
 \vspace{3mm}
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
+In this model we run a simple naive bayes model, with the standard (i.e. uniform) priors and no smoothing. We tried running the model after adding Laplace smoothing, but this significantly reduced our cross-validation score. We also used the cost matrix to predict labels that minimized expected cost (w.r.t. the posterior class probabilities) rather than simply choosing the most likely label. 
 
 To run the algorithm on the validation set run
 \begin{verbatim}
@@ -81,13 +67,6 @@ Y_hat = predict_k_means(X_train_bag, Y_train, X_validation_bag)
 
 We used liblinear to run logistic regression on the data using an L2 loss. We then multiply the cost matrix by the predicted probabilities and predict the class with the smallest expected cost.
 
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-
 To run the algorithm on the validation set run
 \begin{verbatim}
 load('train.mat');
@@ -102,11 +81,7 @@ Y_hat = predict_logistic(X_train_bag, Y_train, X_validation_bag)
 
 \vspace{3mm}
 
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
-ROHAN FILL THIS IN !!!!!!!!!!!\\
+We used a random forest model with 1000 trees and p = 100 features (for each tree). Rather than simply taking the majority vote to predict test labels, we counted the number of times that each class was predicted by the forest for a given sample and used this like a probability measure (normalizing by 1000) to minimize expected cost w.r.t to the cost matrix. 
 
 To run the algorithm on the validation set run
 \begin{verbatim}
