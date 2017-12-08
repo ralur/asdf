@@ -14,7 +14,7 @@ end
 
 cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
 
-[X_train, train_labels] = prep_data(X_train, train_labels, 4);
+[X_train, train_labels] = prep_data(X_train, train_labels, .9);
 [X_train, X_test] = pca_getpc(full(X_train), full(X_test), num_p_components);
 
 Y_hat = zeros(n,1);
