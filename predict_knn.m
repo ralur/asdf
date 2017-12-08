@@ -1,11 +1,11 @@
 %Runs K-nearest neighborhs on the supplied test data and returns the
-%expected labels. Treates the k nearest neighbors as fractiona likelihoods 
+%expected labels. Treates the k nearest neighbors as fractiona likelihoods
 %and uses cost matrix to predict least expected cost label
-%X_train - Data to train on 
+%X_train - Data to train on
 %Labels - of the training data
 %X_test - Data to predict for
 %K - Number of nearest neighbors to use
-%num_p_components - number of principal components to use 
+%num_p_components - number of principal components to use
 function Y_hat = predict_knn(X_train, train_labels, X_test, K, num_p_components)
     if nargin == 3
         K = 100;

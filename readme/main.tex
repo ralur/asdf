@@ -1,0 +1,140 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+
+\title{}
+\author{Tyler Altenhofen, Rohan Alur}
+\date{}
+
+\begin{document}
+\maketitle
+
+{\Large\textbf{Code Intro}}
+
+There is a file called \textbf{run\_all.m} that contains a script for training and running each of our models on the supplied validation set. Each models training and prediction implementation is in if a file with \"predicts\" as a prefix (eg. \textbf{predict\_knn.m}). We then find the parameters using cross validation in scripts with a postfix of \"xval\" (eg \textbf{knn\_xval.m}).
+
+\vspace{5mm}
+
+{\Large\textbf{Generative Methods}}
+
+\vspace{3mm}
+
+{\large\textbf{Naive Bayes}}
+
+\vspace{3mm}
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+
+To run the algorithm on the validation set run
+\begin{verbatim}
+load('train.mat');
+load('validation.mat');
+load('vocabulary.mat');
+Y_hat = predict_naivebayes(X_train_bag, Y_train, X_validation_bag)
+\end{verbatim}
+
+\vspace{3mm}
+{\large\textbf{K-Means Clustering}}
+
+\vspace{3mm}
+
+In this model we first run a basic k-means clustering algorithm. We then determine the appropriate class for each of the clusters by using the class with the maximum number of occurrences with in the cluster. We use this to predict values by finding which cluster it fits into and guessing the class appropriately. 
+
+To train and then run our implementation of k-means on the supplied validation set you can run 
+\begin{verbatim}
+load('train.mat');
+load('validation.mat');
+load('vocabulary.mat');
+Y_hat = predict_k_means(X_train_bag, Y_train, X_validation_bag)
+\end{verbatim}
+
+
+\vspace{5mm}
+
+{\Large\textbf{Discriminative Methods}}
+
+\vspace{3mm}
+
+{\large\textbf{Logistic Regression}}
+
+\vspace{3mm}
+
+We used liblinear to run logistic regression on the data using an L2 loss. We then multiply the cost matrix by the predicted probabilities and predict the class with the smallest expected cost.
+
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+
+To run the algorithm on the validation set run
+\begin{verbatim}
+load('train.mat');
+load('validation.mat');
+load('vocabulary.mat');
+Y_hat = predict_logistic(X_train_bag, Y_train, X_validation_bag)
+\end{verbatim}
+
+\vspace{3mm}
+
+{\large\textbf{Random Forest}}
+
+\vspace{3mm}
+
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+ROHAN FILL THIS IN !!!!!!!!!!!\\
+
+To run the algorithm on the validation set run
+\begin{verbatim}
+load('train.mat');
+load('validation.mat');
+load('vocabulary.mat');
+Y_hat = predict_rf(X_train_bag, Y_train, X_validation_bag)
+\end{verbatim}
+
+\vspace{5mm}
+
+{\Large\textbf{Instances Based Methods}}
+
+\vspace{3mm}
+
+{\large\textbf{K-Nearest Neighbors}}
+
+\vspace{3mm}
+
+This algorithm runs k-nearest neighbors and finds the 100 closest points. It then uses the ratio of points in each class to predict a probability for each class. Finally, it uses the cost matrix to predict the class with the lowest expected cost. 
+
+To run the algorithm on the validation set run
+\begin{verbatim}
+load('train.mat');
+load('validation.mat');
+load('vocabulary.mat');
+Y_hat = predict_knn(X_train_bag, Y_train, X_validation_bag)
+\end{verbatim}
+
+\end{document}
+
