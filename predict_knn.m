@@ -14,13 +14,14 @@ end
 
 cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
 
-[X_train, train_labels] = prep_data(X_train, train_labels, .9);
+[X_train, train_labels, selected] = prep_data(X_train, train_labels, .9);
+X_test = X_test(:,selected);
 [X_train, X_test] = pca_getpc(full(X_train), full(X_test), num_p_components);
 
+[n, ~] = size(X_test);
 Y_hat = zeros(n,1);
 k_nearest_sets = knnsearch(X_train, X_test(), 'Distance', 'cityblock', 'K', K);
 for j = 1:n
-    j
     k_nearest = k_nearest_sets(j,:);
     k_nearest_lables = train_labels(k_nearest);
     number_labels = arrayfun(@(x)sum(k_nearest_lables == x), 1:5);
