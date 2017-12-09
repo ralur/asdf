@@ -18,7 +18,7 @@
 
 {\Large\textbf{Code Intro}}
 
-There is a file called \textbf{run\_all.m} that contains a script for training and running each of our models on the supplied validation set. Each models training and prediction implementation is in if a file with \"predicts\" as a prefix (eg. \textbf{predict\_knn.m}). We then find the parameters using cross validation in scripts with a postfix of \"xval\" (eg \textbf{knn\_xval.m}).
+There is a file called \textbf{run\_all.m} that contains a script for training and running each of our models on the supplied validation set. Each model's training and prediction implementation is in if a file with ``predicts'' as a prefix (eg. \textbf{predict\_knn.m}). We then find the parameters using cross validation in scripts with a postfix of ``xval'' (eg \textbf{knn\_xval.m}).
 
 \vspace{5mm}
 
@@ -44,7 +44,7 @@ Y_hat = predict_naivebayes(X_train_bag, Y_train, X_validation_bag)
 
 \vspace{3mm}
 
-In this model we first run a basic k-means clustering algorithm. We then determine the appropriate class for each of the clusters by using the class with the maximum number of occurrences with in the cluster. We use this to predict values by finding which cluster it fits into and guessing the class appropriately. 
+In this model we first run a basic k-means clustering algorithm. We then determine the appropriate class for each of the clusters by using the class with the maximum number of occurrences within the cluster. We use this to predict values by finding which cluster it fits into and guessing the class appropriately. 
 
 To train and then run our implementation of k-means on the supplied validation set you can run 
 \begin{verbatim}
