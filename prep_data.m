@@ -1,8 +1,11 @@
-function [X, Y, included_features] = prep_data(X_input, Y_input, cutoff, cutoff2)
+function [X, Y, included_features] = prep_data(X_input, Y_input, cutoff, min_work_occurences)
+    if nargin == 3
+        min_work_occurences = 0;
+    end
     num_features = size(X_input, 2);
     X = [X_input sum(X_input, 2)]; % add feature containing length of tweet
     X = [double(X(:, 1:num_features) > 0) X(:, num_features + 1)];
-    X = X(:, (sum(X, 1) > cutoff2));
+    X = X(:, (sum(X, 1) > min_work_occurences));
     num_features = size(X, 2);
     Y = Y_input;
     [baseline, ~] = hist(Y_input, 5);
