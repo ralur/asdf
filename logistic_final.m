@@ -4,19 +4,18 @@ load('vocabulary.mat');
 
 cost_matrix = [0 3 1 2 3; 4 0 2 3 2; 1 2 0 2 1; 2 1 2 0 2; 2 2 2 1 0];
 
-cs = .2:.02:.4;
+cs = .2:.001:.3;
 inx = 1;
 scores = zeros(1, length(cs));
 
-% [X, Y] = prep_data(X_train_bag, Y_train, 0);
-X = double(X_train_bag > 0);
-Y = Y_train;
+[X, Y] = prep_data(X_train_bag, Y_train, 0);
+
 for c = cs
-    inx / length(cs)
     predict_func = @(X, Y, Xt)(predict_logistic_final(X, Y, Xt, c)); % partially apply function with chosen value of 'c'
     score = cross_val(X, Y, 10, predict_func);
     scores(inx) = score;
     inx = inx+1;
+    inx / length(cs)
 end
 
 function Y_hat = predict_logistic_final(X_train, Y_train, X_test, c)
