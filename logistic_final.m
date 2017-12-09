@@ -10,7 +10,7 @@ inx = 1;
 scores = zeros(1, length(cs));
 
 % [X, Y] = prep_data(X_train_bag, Y_train, 0);
-%X = double(X_train_bag > 0);
+X = double(X_train_bag > 0);
 X = remove_uncommon_words(X_train_bag);
 Y = Y_train;
 for c = cs
