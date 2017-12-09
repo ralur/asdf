@@ -32,7 +32,6 @@ end
 function cleanX = remove_uncommon_words(X)
 [n, ~] = size(X);
 word_count = sum((X > 1), 1);
-occurs_infequently = word_count < 2;
-%occurs_infequently = word_count > (n / 2); 
+occurs_infequently = word_count < 2; 
 cleanX = X(:, ~occurs_infequently);
 end
